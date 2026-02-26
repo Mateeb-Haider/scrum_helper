@@ -1048,7 +1048,7 @@ function allIncluded(outputTarget = 'email') {
 			} else {
 				periodDescription = 'the selected period';
 			}
-			return `<ul><li>No contributions found for ${periodDescription}.</li></ul>`;
+			return `<div>No contributions found for ${periodDescription}.</div>`;
 		}
 
 		let activityList = '<ul>';
