@@ -1040,15 +1040,7 @@ function allIncluded(outputTarget = 'email') {
 
 	function buildActivityListHtml() {
 		if (lastWeekArray.length === 0 && reviewedPrsArray.length === 0) {
-			let periodDescription;
-			if (yesterdayContribution) {
-				periodDescription = 'yesterday';
-			} else if (startingDate && endingDate) {
-				periodDescription = `${formatDate(startingDate)} – ${formatDate(endingDate)}`;
-			} else {
-				periodDescription = 'the selected period';
-			}
-			return `<div>No contributions found for ${periodDescription}.</div>`;
+			return '<div style="padding: 0 12px;">No activity to report for this update.</div>';
 		}
 
 		let activityList = '<ul>';
