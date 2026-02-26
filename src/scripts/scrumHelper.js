@@ -1040,7 +1040,7 @@ function allIncluded(outputTarget = 'email') {
 
 	function buildActivityListHtml() {
 		if (lastWeekArray.length === 0 && reviewedPrsArray.length === 0) {
-			return '<div style="padding: 0 12px;">No activity to report for this update.</div>';
+			return '<div style="padding: 0 12px;">No activity to report for the selected time period.</div>';
 		}
 
 		let activityList = '<ul>';
