@@ -129,7 +129,12 @@ document.addEventListener('DOMContentLoaded', () => {
 		}, durationMs);
 	}
 
-	function checkTokenForShowCommits({ showWarning = false, animateWarning = false, warningDurationMs = 4000 } = {}) {
+	function checkTokenForShowCommits({
+		showWarning = false,
+		animateWarning = false,
+		warningDurationMs = 4000,
+		persistState = true,
+	} = {}) {
 		const showCommits = document.getElementById('showCommits');
 		const githubTokenInput = document.getElementById('githubToken');
 
@@ -142,12 +147,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
 		if (isShowCommitsEnabled && !hasToken) {
 			showCommits.checked = false;
-			chrome?.storage.local.set({ showCommits: false });
 			if (showWarning) {
 				showTokenWarningForShowCommits({
 					animate: animateWarning,
 					durationMs: warningDurationMs,
 				});
+			}
+			if (persistState) {
+				chrome?.storage.local.set({ showCommits: false });
 			}
 			return;
 		}
@@ -159,6 +166,9 @@ document.addEventListener('DOMContentLoaded', () => {
 				showCommitsWarningTimeout = null;
 			}
 			tokenWarning.classList.add('hidden');
+		}
+		if (persistState) {
+			chrome?.storage.local.set({ showCommits: showCommits.checked });
 		}
 	}
 
@@ -715,7 +725,6 @@ document.addEventListener('DOMContentLoaded', () => {
 				animateWarning: true,
 				warningDurationMs: 3000,
 			});
-			chrome?.storage.local.set({ showCommits: showCommitsCheckbox.checked });
 		});
 		githubTokenInput.addEventListener('input', () => {
 			chrome?.storage.local.set({ githubToken: githubTokenInput.value });
