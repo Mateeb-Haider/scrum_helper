@@ -1001,16 +1001,15 @@ function allIncluded(outputTarget = 'email') {
 		if (subjectForEmail) {
 			// Synchronized subject and body injection for email
 			const lastWeekUl = buildActivityListHtml();
-			let nextWeekUl = '<ul>';
-			for (let i = 0; i < nextWeekArray.length; i++) nextWeekUl += nextWeekArray[i];
-			nextWeekUl += '</ul>';
+			const nextWeekUl = buildNextWeekListHtml();
+			const blockerText = buildBlockerTextHtml();
 			const weekOrDay = yesterdayContribution ? 'yesterday' : 'the period';
 			const weekOrDay2 = 'today';
 			let content;
 			if (yesterdayContribution) {
-				content = `<b>1. What did I do ${weekOrDay}?</b><br>${lastWeekUl}<br><b>2. What do I plan to do ${weekOrDay2}?</b><br>${nextWeekUl}<br><b>3. What is blocking me from making progress?</b><br>${userReason}`;
+				content = `<b>1. What did I do ${weekOrDay}?</b><br>${lastWeekUl}<br><b>2. What do I plan to do ${weekOrDay2}?</b><br>${nextWeekUl}<br><b>3. What is blocking me from making progress?</b><br>${blockerText}`;
 			} else {
-				content = `<b>1. What did I do from ${formatDate(startingDate)} to ${formatDate(endingDate)}?</b><br>${lastWeekUl}<br><b>2. What do I plan to do ${weekOrDay2}?</b><br>${nextWeekUl}<br><b>3. What is blocking me from making progress?</b><br>${userReason}`;
+				content = `<b>1. What did I do from ${formatDate(startingDate)} to ${formatDate(endingDate)}?</b><br>${lastWeekUl}<br><b>2. What do I plan to do ${weekOrDay2}?</b><br>${nextWeekUl}<br><b>3. What is blocking me from making progress?</b><br>${blockerText}`;
 			}
 			// Wait for both subject and body to be available, then inject both
 			let injected = false;
@@ -1040,7 +1039,7 @@ function allIncluded(outputTarget = 'email') {
 
 	function buildActivityListHtml() {
 		if (lastWeekArray.length === 0 && reviewedPrsArray.length === 0) {
-			return '<div style="padding: 0 12px;">No activity to report for the selected time period.</div>';
+			return '<span style="display: inline-block; padding: 0 8px; margin: 0; line-height: 1.2;">No activity to report for the selected time period.</span>';
 		}
 
 		let activityList = '<ul>';
@@ -1050,6 +1049,21 @@ function allIncluded(outputTarget = 'email') {
 		return activityList;
 	}
 
+	function buildNextWeekListHtml() {
+		if (nextWeekArray.length === 0) {
+			return '<span style="display: inline-block; padding: 0 8px; margin: 0; line-height: 1.2;">No plans added yet.</span>';
+		}
+
+		let nextWeekList = '<ul>';
+		for (let i = 0; i < nextWeekArray.length; i++) nextWeekList += nextWeekArray[i];
+		nextWeekList += '</ul>';
+		return nextWeekList;
+	}
+
+	function buildBlockerTextHtml() {
+		return `<span style="display: inline-block; padding: 0 8px; margin: 0; line-height: 1.2;">${userReason}</span>`;
+	}
+
 	function writeScrumBody() {
 		if (!enableToggle) {
 			scrumGenerationInProgress = false;
@@ -1057,10 +1071,8 @@ function allIncluded(outputTarget = 'email') {
 		}
 
 		const lastWeekUl = buildActivityListHtml();
-
-		let nextWeekUl = '<ul>';
-		for (let i = 0; i < nextWeekArray.length; i++) nextWeekUl += nextWeekArray[i];
-		nextWeekUl += '</ul>';
+		const nextWeekUl = buildNextWeekListHtml();
+		const blockerText = buildBlockerTextHtml();
 
 		const weekOrDay = yesterdayContribution ? 'yesterday' : 'the period';
 		const weekOrDay2 = 'today';
@@ -1072,14 +1084,14 @@ ${lastWeekUl}<br>
 <b>2. What do I plan to do ${weekOrDay2}?</b><br>
 ${nextWeekUl}<br>
 <b>3. What is blocking me from making progress?</b><br>
-${userReason}`;
+${blockerText}`;
 		} else {
 			content = `<b>1. What did I do from ${formatDate(startingDate)} to ${formatDate(endingDate)}?</b><br>
 ${lastWeekUl}<br>
 <b>2. What do I plan to do ${weekOrDay2}?</b><br>
 ${nextWeekUl}<br>
 <b>3. What is blocking me from making progress?</b><br>
-${userReason}`;
+${blockerText}`;
 		}
 
 		if (outputTarget === 'popup') {
