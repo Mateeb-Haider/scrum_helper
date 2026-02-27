@@ -1037,9 +1037,15 @@ function allIncluded(outputTarget = 'email') {
 		return date.toLocaleDateString('en-US', options);
 	}
 
+	const compactTextStyle = 'display: inline-block; padding: 0 8px; margin: 0; line-height: 1.2;';
+
+	function wrapCompactText(content) {
+		return `<span style="${compactTextStyle}">${content}</span>`;
+	}
+
 	function buildActivityListHtml() {
 		if (lastWeekArray.length === 0 && reviewedPrsArray.length === 0) {
-			return '<span style="display: inline-block; padding: 0 8px; margin: 0; line-height: 1.2;">No activity to report for the selected time period.</span>';
+			return wrapCompactText('No activity to report for the selected time period.');
 		}
 
 		let activityList = '<ul>';
@@ -1051,7 +1057,7 @@ function allIncluded(outputTarget = 'email') {
 
 	function buildNextWeekListHtml() {
 		if (nextWeekArray.length === 0) {
-			return '<span style="display: inline-block; padding: 0 8px; margin: 0; line-height: 1.2;">No plans added yet.</span>';
+			return wrapCompactText('No plans added yet.');
 		}
 
 		let nextWeekList = '<ul>';
@@ -1061,7 +1067,7 @@ function allIncluded(outputTarget = 'email') {
 	}
 
 	function buildBlockerTextHtml() {
-		return `<span style="display: inline-block; padding: 0 8px; margin: 0; line-height: 1.2;">${userReason}</span>`;
+		return wrapCompactText(userReason);
 	}
 
 	function writeScrumBody() {
