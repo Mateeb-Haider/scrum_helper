@@ -8,6 +8,16 @@
 
 ---
 
+## v2.1.5 - 2026-02-28
+
+## What's Changed
+
+## Maintenance
+
+* version bump to 2.1.4 (#408) @vedansh-5
+
+---
+
 ## v2.0.4 - 2026-02-28
 
 ## What's Changed
