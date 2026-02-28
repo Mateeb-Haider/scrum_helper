@@ -68,13 +68,13 @@ function showToast(message) {
 //  Keyboard Shortcut Handler 
 function handleShortcutKey(e) {
 	const isMac = navigator.userAgentData ? navigator.userAgentData.platform === 'macOS' : navigator.platform.toLowerCase().includes('mac');
-	
+
 	if ((isMac ? e.metaKey : e.ctrlKey) && !e.shiftKey && e.key.toLowerCase() === 'g') {
 		e.preventDefault();
 		showToast('Generating report');
 		document.getElementById('generateReport')?.click();
 	}
-	
+
 	if ((isMac ? e.metaKey : e.ctrlKey) && e.shiftKey && e.key.toLowerCase() === 'y') {
 		e.preventDefault();
 		document.getElementById('copyReport')?.click();
@@ -570,24 +570,32 @@ document.addEventListener('DOMContentLoaded', () => {
 			selection.removeAllRanges();
 			selection.addRange(range);
 
+			const updateBtn = (btn, iconCls, label) => {
+				btn.textContent = '';
+				const icon = document.createElement('i');
+				icon.className = 'fa ' + iconCls;
+				btn.appendChild(icon);
+				btn.appendChild(document.createTextNode(' ' + (label || '')));
+			};
+
 			let copied = false;
 			try {
 				copied = document.execCommand('copy');
 				if (copied) {
-					this.innerHTML = `<i class="fa fa-check"></i> ${chrome?.i18n.getMessage('copiedButton')}`;
+					updateBtn(this, 'fa-check', chrome?.i18n.getMessage('copiedButton'));
 					showToast('Report copied');
 				} else {
-					this.innerHTML = `<i class="fa fa-times"></i> ${chrome?.i18n.getMessage('copyFailedButton') || 'Copy failed'}`;
+					updateBtn(this, 'fa-times', chrome?.i18n.getMessage('copyFailedButton') || 'Copy failed');
 					showToast('Copy failed');
 				}
 				setTimeout(() => {
-					this.innerHTML = `<i class="fa fa-copy"></i> ${chrome?.i18n.getMessage('copyReportButton')}`;
+					updateBtn(this, 'fa-copy', chrome?.i18n.getMessage('copyReportButton'));
 				}, 2000);
 			} catch (err) {
-				this.innerHTML = `<i class="fa fa-times"></i> ${chrome?.i18n.getMessage('copyFailedButton') || 'Copy failed'}`;
+				updateBtn(this, 'fa-times', chrome?.i18n.getMessage('copyFailedButton') || 'Copy failed');
 				showToast('Copy failed');
 				setTimeout(() => {
-					this.innerHTML = `<i class="fa fa-copy"></i> ${chrome?.i18n.getMessage('copyReportButton')}`;
+					updateBtn(this, 'fa-copy', chrome?.i18n.getMessage('copyReportButton'));
 				}, 2000);
 				console.error('Failed to copy: ', err);
 			} finally {
@@ -855,7 +863,7 @@ document.addEventListener('DOMContentLoaded', () => {
 					chrome?.storage.local.get(['platform'], resolve);
 				});
 				platform = items.platform || 'github';
-			} catch {}
+			} catch (e) { }
 			if (platform !== 'github') {
 				// Do not run repo fetch for non-GitHub platforms
 				if (repoStatus) repoStatus.textContent = 'Repository filtering is only available for GitHub.';
@@ -944,7 +952,7 @@ document.addEventListener('DOMContentLoaded', () => {
 						chrome?.storage.local.get(['platform'], resolve);
 					});
 					platform = items.platform || 'github';
-				} catch {}
+				} catch (e) { }
 				if (platform !== 'github') {
 					repoFilterContainer.classList.add('hidden');
 					useRepoFilter.checked = false;
@@ -1126,7 +1134,7 @@ document.addEventListener('DOMContentLoaded', () => {
 					chrome?.storage.local.get(['platform'], resolve);
 				});
 				platform = items.platform || 'github';
-			} catch {}
+			} catch (e) { }
 			if (platform !== 'github') {
 				if (repoStatus) repoStatus.textContent = 'Repository loading is only available for GitHub.';
 				return;
@@ -1170,7 +1178,7 @@ document.addEventListener('DOMContentLoaded', () => {
 					chrome?.storage.local.get(['platform'], resolve);
 				});
 				platform = items.platform || 'github';
-			} catch (e) {}
+			} catch (e) { }
 			if (platform !== 'github') {
 				if (repoStatus) repoStatus.textContent = 'Repository fetching is only available for GitHub.';
 				return;
@@ -1726,7 +1734,7 @@ document.getElementById('refreshCache').addEventListener('click', async function
 				chrome?.storage.local.get(['platform'], resolve);
 			});
 			platform = items.platform || 'github';
-		} catch (e) {}
+		} catch (e) { }
 
 		// Clear all caches
 		const keysToRemove = ['githubCache', 'repoCache', 'gitlabCache'];
