@@ -1,3 +1,90 @@
+//  OS Detection & Shortcut Labels 
+function getOSShortcutLabel(action) {
+	const isMac = navigator.userAgentData ? navigator.userAgentData.platform === 'macOS' : navigator.platform.toLowerCase().includes('mac');
+	if (action === 'generate') {
+		return isMac ? 'Cmd + G' : 'Ctrl + G';
+	} else if (action === 'copy') {
+		return isMac ? 'Cmd + Shift + Y' : 'Ctrl + Shift + Y';
+	}
+	return '';
+}
+
+
+function setupShortcutTooltips() {
+	const generateBtn = document.getElementById('generateReport');
+	const copyBtn = document.getElementById('copyReport');
+	if (generateBtn) {
+		generateBtn.addEventListener('mouseenter', () => {
+			showShortcutTooltip(generateBtn, getOSShortcutLabel('generate'));
+		});
+		generateBtn.addEventListener('mouseleave', () => {
+			hideShortcutTooltip(generateBtn);
+		});
+	}
+	if (copyBtn) {
+		copyBtn.addEventListener('mouseenter', () => {
+			showShortcutTooltip(copyBtn, getOSShortcutLabel('copy'));
+		});
+		copyBtn.addEventListener('mouseleave', () => {
+			hideShortcutTooltip(copyBtn);
+		});
+	}
+}
+
+function showShortcutTooltip(btn, text) {
+	let tooltip = btn.querySelector('.shortcut-tooltip');
+	if (!tooltip) {
+		tooltip = document.createElement('span');
+		tooltip.className = 'shortcut-tooltip';
+		btn.appendChild(tooltip);
+	}
+	tooltip.textContent = text;
+	tooltip.style.display = 'inline-block';
+}
+
+function hideShortcutTooltip(btn) {
+	const tooltip = btn.querySelector('.shortcut-tooltip');
+	if (tooltip) {
+		tooltip.style.display = 'none';
+	}
+}
+
+
+function showToast(message) {
+	let toast = document.getElementById('shortcut-toast');
+	if (!toast) {
+		toast = document.createElement('div');
+		toast.id = 'shortcut-toast';
+		toast.className = 'shortcut-toast';
+		document.body.appendChild(toast);
+	}
+	toast.textContent = message;
+	toast.style.display = 'block';
+	setTimeout(() => {
+		toast.style.display = 'none';
+	}, 2000);
+}
+
+//  Keyboard Shortcut Handler 
+function handleShortcutKey(e) {
+	const isMac = navigator.userAgentData ? navigator.userAgentData.platform === 'macOS' : navigator.platform.toLowerCase().includes('mac');
+	
+	if ((isMac ? e.metaKey : e.ctrlKey) && !e.shiftKey && e.key.toLowerCase() === 'g') {
+		e.preventDefault();
+		showToast('Generating report');
+		document.getElementById('generateReport')?.click();
+	}
+	
+	if ((isMac ? e.metaKey : e.ctrlKey) && e.shiftKey && e.key.toLowerCase() === 'y') {
+		e.preventDefault();
+		document.getElementById('copyReport')?.click();
+	}
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+	setupShortcutTooltips();
+	document.addEventListener('keydown', handleShortcutKey);
+});
 function debounce(func, wait) {
 	let timeout;
 	return function (...args) {
@@ -483,13 +570,25 @@ document.addEventListener('DOMContentLoaded', () => {
 			selection.removeAllRanges();
 			selection.addRange(range);
 
+			let copied = false;
 			try {
-				document.execCommand('copy');
-				this.innerHTML = `<i class="fa fa-check"></i> ${chrome?.i18n.getMessage('copiedButton')}`;
+				copied = document.execCommand('copy');
+				if (copied) {
+					this.innerHTML = `<i class="fa fa-check"></i> ${chrome?.i18n.getMessage('copiedButton')}`;
+					showToast('Report copied');
+				} else {
+					this.innerHTML = `<i class="fa fa-times"></i> ${chrome?.i18n.getMessage('copyFailedButton') || 'Copy failed'}`;
+					showToast('Copy failed');
+				}
 				setTimeout(() => {
 					this.innerHTML = `<i class="fa fa-copy"></i> ${chrome?.i18n.getMessage('copyReportButton')}`;
 				}, 2000);
 			} catch (err) {
+				this.innerHTML = `<i class="fa fa-times"></i> ${chrome?.i18n.getMessage('copyFailedButton') || 'Copy failed'}`;
+				showToast('Copy failed');
+				setTimeout(() => {
+					this.innerHTML = `<i class="fa fa-copy"></i> ${chrome?.i18n.getMessage('copyReportButton')}`;
+				}, 2000);
 				console.error('Failed to copy: ', err);
 			} finally {
 				selection.removeAllRanges();

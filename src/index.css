@@ -1,3 +1,72 @@
+.shortcut-tooltip {
+    /* ...existing styles... */
+    position: absolute;
+    left: 50%;
+    bottom: 100%;
+    transform: translateX(-50%) translateY(-8px);
+    /* ...existing styles... */
+}
+.shortcut-tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 7px;
+    border-style: solid;
+    border-color: #fff transparent transparent transparent;
+    display: block;
+}
+body.dark-mode .shortcut-tooltip::after {
+    border-color: #222 transparent transparent transparent;
+}
+/* Shortcut tooltip styling */
+/* Shortcut tooltip styling - above button, dark/light mode compatible */
+.shortcut-tooltip {
+    position: absolute;
+    left: 50%;
+    bottom: 100%;
+    transform: translateX(-50%) translateY(-8px);
+    background: #fff;
+    color: #333;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    padding: 4px 12px;
+    font-size: 13px;
+    white-space: nowrap;
+    z-index: 1000;
+    border: 1px solid #e0e0e0;
+    display: none;
+    transition: background 0.2s, color 0.2s;
+}
+
+body.dark-mode .shortcut-tooltip {
+    background: #222;
+    color: #f5f5f5;
+    border: 1px solid #444;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.32);
+}
+
+/* Toast notification styling */
+.shortcut-toast {
+    position: fixed;
+    top: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(90deg, #2563eb 0%, #1e40af 100%);
+    color: #fff;
+    padding: 10px 24px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 500;
+    box-shadow: 0 2px 12px rgba(30,64,175,0.18);
+    z-index: 9999;
+    display: none;
+    opacity: 0.98;
+    pointer-events: none;
+    border: none;
+    letter-spacing: 0.02em;
+}
 body {
     margin: 0;
     padding: 0;
