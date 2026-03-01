@@ -51,10 +51,13 @@
         "message": "Relatório Scrum"
     },
     "generateReportButton": {
-        "message": "Gerar Relatório"
+        "message": "Gerar"
     },
     "copyReportButton": {
-        "message": "Copiar Relatório"
+        "message": "Copiar"
+    },
+    "insertInEmailButton": {
+        "message": "Inserir no email"
     },
     "settingsOrgNameLabel": {
         "message": "Nome da Organização"
@@ -211,7 +214,7 @@
         "message": "Organização configurada com sucesso."
     },
     "orgClearedMessage": {
-        "message": "Organização removida. Clique em 'Gerar Relatório' para buscar todas as atividades."
+        "message": "Organization cleared. Click 'Generate' to fetch all activities."
     },
     "orgNotFoundMessage": {
         "message": "Organização não encontrada no GitHub."
