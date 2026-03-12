@@ -233,24 +233,24 @@
         "message": "Se selezionato, il report includerà solo le PR revisionate da te."
     },
     "generateReportTooltip": {
-        "message": "Ctrl+G",
+        "message": "Ctrl+G"
     },
     "copyReportTooltip": {
-        "message": "Ctrl+Shift+Y",
+        "message": "Ctrl+Shift+Y"
     },
     "generatingReportNotification": {
-        "message": "Generazione del report...",
+        "message": "Generazione del report..."
     },
     "copyingReportNotification": {
-        "message": "Report copiato!",
+        "message": "Report copiato!"
     },
     "insertInEmailTooltip": {
-        "message": "Ctrl+Shift+M",
+        "message": "Ctrl+Shift+M"
     },
     "insertingInEmailNotification": {
-        "message": "Inserimento del report nell'email...",
+        "message": "Inserimento del report nell'email..."
     },
     "insertedInEmailNotification": {
-        "message": "Report inserito nell'email!",
+        "message": "Report inserito nell'email!"
     }
 }

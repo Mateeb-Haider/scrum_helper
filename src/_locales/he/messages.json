@@ -233,24 +233,24 @@
         "message": "אם מסומן, הדוח יכלול רק PR שנבדקו על ידך."
     },
     "generateReportTooltip": {
-        "message": "Ctrl+G",
+        "message": "Ctrl+G"
     },
     "copyReportTooltip": {
-        "message": "Ctrl+Shift+Y",
+        "message": "Ctrl+Shift+Y"
     },
     "generatingReportNotification": {
-        "message": "מייצר דוח...",
+        "message": "מייצר דוח..."
     },
     "copyingReportNotification": {
-        "message": "הדוח הועתק!",
+        "message": "הדוח הועתק!"
     },
     "insertInEmailTooltip": {
-        "message": "Ctrl+Shift+M",
+        "message": "Ctrl+Shift+M"
     },
     "insertingInEmailNotification": {
-        "message": "מוסיף דוח לאימייל...",
+        "message": "מוסיף דוח לאימייל..."
     },
     "insertedInEmailNotification": {
-        "message": "הדוח הוכנס לאימייל!",
+        "message": "הדוח הוכנס לאימייל!"
     }
 }

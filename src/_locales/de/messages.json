@@ -233,24 +233,24 @@
         "message": "Wenn diese Option aktiviert ist, enthält der Bericht nur PRs, die von Ihnen überprüft wurden."
     },
     "generateReportTooltip": {
-        "message": "Ctrl+G",
+        "message": "Ctrl+G"
     },
     "copyReportTooltip": {
-        "message": "Ctrl+Shift+Y",
+        "message": "Ctrl+Shift+Y"
     },
     "generatingReportNotification": {
-        "message": "Bericht wird erstellt...",
+        "message": "Bericht wird erstellt..."
     },
     "copyingReportNotification": {
-        "message": "Bericht kopiert!",
+        "message": "Bericht kopiert!"
     },
     "insertInEmailTooltip": {
-        "message": "Ctrl+Shift+M",
+        "message": "Ctrl+Shift+M"
     },
     "insertingInEmailNotification": {
-        "message": "Bericht wird in E-Mail eingefügt...",
+        "message": "Bericht wird in E-Mail eingefügt..."
     },
     "insertedInEmailNotification": {
-        "message": "Bericht in E-Mail eingefügt!",
+        "message": "Bericht in E-Mail eingefügt!"
     }
 }

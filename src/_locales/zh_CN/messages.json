@@ -233,24 +233,24 @@
         "message": "如果选中，报告将仅包含由您审核的 PR。"
     },
     "generateReportTooltip": {
-        "message": "Ctrl+G",
+        "message": "Ctrl+G"
     },
     "copyReportTooltip": {
-        "message": "Ctrl+Shift+Y",
+        "message": "Ctrl+Shift+Y"
     },
     "generatingReportNotification": {
-        "message": "正在生成报告...",
+        "message": "正在生成报告..."
     },
     "copyingReportNotification": {
-        "message": "报告已复制！",
+        "message": "报告已复制！"
     },
     "insertInEmailTooltip": {
-        "message": "Ctrl+Shift+M",
+        "message": "Ctrl+Shift+M"
     },
     "insertingInEmailNotification": {
-        "message": "正在将报告插入邮件...",
+        "message": "正在将报告插入邮件..."
     },
     "insertedInEmailNotification": {
-        "message": "报告已插入邮件！",
+        "message": "报告已插入邮件！"
     }
 }

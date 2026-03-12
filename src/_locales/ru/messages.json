@@ -233,24 +233,24 @@
         "message": "Если отмечено, отчёт будет включать только PR, проверенные вами."
     },
     "generateReportTooltip": {
-        "message": "Ctrl+G",
+        "message": "Ctrl+G"
     },
     "copyReportTooltip": {
-        "message": "Ctrl+Shift+Y",
+        "message": "Ctrl+Shift+Y"
     },
     "generatingReportNotification": {
-        "message": "Создание отчёта...",
+        "message": "Создание отчёта..."
     },
     "copyingReportNotification": {
-        "message": "Отчёт скопирован!",
+        "message": "Отчёт скопирован!"
     },
     "insertInEmailTooltip": {
-        "message": "Ctrl+Shift+M",
+        "message": "Ctrl+Shift+M"
     },
     "insertingInEmailNotification": {
-        "message": "Вставка отчёта в письмо...",
+        "message": "Вставка отчёта в письмо..."
     },
     "insertedInEmailNotification": {
-        "message": "Отчёт вставлен в письмо!",
+        "message": "Отчёт вставлен в письмо!"
     }
 }

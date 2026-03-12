@@ -234,24 +234,24 @@
         "message": "チェックした場合、レポートにはあなたがレビューしたPRのみが含まれます。"
     },
     "generateReportTooltip": {
-        "message": "Ctrl+G",
+        "message": "Ctrl+G"
     },
     "copyReportTooltip": {
-        "message": "Ctrl+Shift+Y",
+        "message": "Ctrl+Shift+Y"
     },
     "generatingReportNotification": {
-        "message": "レポートを生成中...",
+        "message": "レポートを生成中..."
     },
     "copyingReportNotification": {
-        "message": "レポートをコピーしました！",
+        "message": "レポートをコピーしました！"
     },
     "insertInEmailTooltip": {
-        "message": "Ctrl+Shift+M",
+        "message": "Ctrl+Shift+M"
     },
     "insertingInEmailNotification": {
-        "message": "レポートをメールに挿入中...",
+        "message": "レポートをメールに挿入中..."
     },
     "insertedInEmailNotification": {
-        "message": "レポートをメールに挿入しました！",
+        "message": "レポートをメールに挿入しました！"
     }
 }

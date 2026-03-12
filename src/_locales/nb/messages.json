@@ -233,24 +233,24 @@
         "message": "Hvis valgt, vil rapporten kun inkludere PR-er gjennomgått av deg."
     },
     "generateReportTooltip": {
-        "message": "Ctrl+G",
+        "message": "Ctrl+G"
     },
     "copyReportTooltip": {
-        "message": "Ctrl+Shift+Y",
+        "message": "Ctrl+Shift+Y"
     },
     "generatingReportNotification": {
-        "message": "Genererer rapport...",
+        "message": "Genererer rapport..."
     },
     "copyingReportNotification": {
-        "message": "Rapport kopiert!",
+        "message": "Rapport kopiert!"
     },
     "insertInEmailTooltip": {
-        "message": "Ctrl+Shift+M",
+        "message": "Ctrl+Shift+M"
     },
     "insertingInEmailNotification": {
-        "message": "Setter inn rapport i e-post...",
+        "message": "Setter inn rapport i e-post..."
     },
     "insertedInEmailNotification": {
-        "message": "Rapport satt inn i e-post!",
+        "message": "Rapport satt inn i e-post!"
     }
 }
