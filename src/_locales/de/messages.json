@@ -231,5 +231,33 @@
     },
     "onlyRevPRsTooltip": {
         "message": "Wenn diese Option aktiviert ist, enthält der Bericht nur PRs, die von Ihnen überprüft wurden."
+    },
+    "generateReportTooltip": {
+        "message": "Ctrl+G",
+        "description": "Tooltip shortcut for the Generate button. Dynamically replaced with Cmd+G on macOS."
+    },
+    "copyReportTooltip": {
+        "message": "Ctrl+Shift+Y",
+        "description": "Tooltip shortcut for the Copy button. Dynamically replaced with Cmd+Shift+Y on macOS."
+    },
+    "generatingReportNotification": {
+        "message": "Bericht wird erstellt...",
+        "description": "Notification shown when report generation is triggered via keyboard shortcut."
+    },
+    "copyingReportNotification": {
+        "message": "Bericht kopiert!",
+        "description": "Notification shown when report is copied via keyboard shortcut."
+    },
+    "insertInEmailTooltip": {
+        "message": "Ctrl+Shift+M",
+        "description": "Tooltip shortcut for the Insert in Email button. Dynamically replaced with Cmd+Shift+M on macOS."
+    },
+    "insertingInEmailNotification": {
+        "message": "Bericht wird in E-Mail eingefügt...",
+        "description": "Notification shown when report insertion into email is triggered via keyboard shortcut."
+    },
+    "insertedInEmailNotification": {
+        "message": "Bericht in E-Mail eingefügt!",
+        "description": "Notification shown when report is successfully inserted into email."
     }
 }
