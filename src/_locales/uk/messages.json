@@ -234,30 +234,23 @@
     },
     "generateReportTooltip": {
         "message": "Ctrl+G",
-        "description": "Tooltip shortcut for the Generate button. Dynamically replaced with Cmd+G on macOS."
     },
     "copyReportTooltip": {
         "message": "Ctrl+Shift+Y",
-        "description": "Tooltip shortcut for the Copy button. Dynamically replaced with Cmd+Shift+Y on macOS."
     },
     "generatingReportNotification": {
         "message": "Генерація звіту...",
-        "description": "Notification shown when report generation is triggered via keyboard shortcut."
     },
     "copyingReportNotification": {
         "message": "Звіт скопійовано!",
-        "description": "Notification shown when report is copied via keyboard shortcut."
     },
     "insertInEmailTooltip": {
         "message": "Ctrl+Shift+M",
-        "description": "Tooltip shortcut for the Insert in Email button. Dynamically replaced with Cmd+Shift+M on macOS."
     },
     "insertingInEmailNotification": {
         "message": "Вставка звіту в лист...",
-        "description": "Notification shown when report insertion into email is triggered via keyboard shortcut."
     },
     "insertedInEmailNotification": {
         "message": "Звіт вставлено в лист!",
-        "description": "Notification shown when report is successfully inserted into email."
     }
 }
