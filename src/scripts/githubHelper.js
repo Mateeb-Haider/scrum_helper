@@ -303,7 +303,7 @@ async function triggerRepoFetchIfEnabled() {
 		}
 
 		if (window.fetchUserRepositories) {
-			const repos = await window.fetchUserRepositories(username, items.githubToken, items.orgName || '');
+			const repos = (await window.fetchUserRepositories(username, items.githubToken, items.orgName || '')) || [];
 			setAvailableRepos?.(repos);
 
 			if (repoStatus) {
@@ -457,13 +457,10 @@ async function performRepoFetch() {
 			return;
 		}
 		console.log('[POPUP-DEBUG] No valid cache. Fetching from network.');
-		const fetchedRepos = await window.fetchUserRepositories(
-			username,
-			storageItems.githubToken,
-			storageItems.orgName || '',
-		);
+		const fetchedRepos =
+			(await window.fetchUserRepositories(username, storageItems.githubToken, storageItems.orgName || '')) || [];
 		setAvailableRepos(fetchedRepos);
-		const availableRepos = getAvailableRepos();
+		const availableRepos = getAvailableRepos() || [];
 		repoStatus.textContent = browser.i18n.getMessage('repoLoaded', [availableRepos.length]);
 		console.log(`[POPUP-DEBUG] Fetched and loaded ${availableRepos.length} repos.`);
 
@@ -713,8 +710,14 @@ async function fetchUserRepositories(username, token, org = '') {
 				}));
 
 			return repos.sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt));
-		} catch (err) {}
-	} catch (err) {}
+		} catch (err) {
+			console.error('GraphQL repository fetch error:', err);
+			throw err;
+		}
+	} catch (err) {
+		console.error('fetchUserRepositories error:', err);
+		throw err;
+	}
 }
 
 window.fetchUserRepositories = fetchUserRepositories;

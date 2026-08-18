@@ -1735,12 +1735,13 @@ document.addEventListener('DOMContentLoaded', () => {
 						}
 
 						if (window.fetchUserRepositories) {
-							const repos = await window.fetchUserRepositories(
-								username,
+							const repos =
+								(await window.fetchUserRepositories(
+									username,
 
-								items.githubToken,
-								items.orgName || '',
-							);
+									items.githubToken,
+									items.orgName || '',
+								)) || [];
 							availableRepos = repos;
 							repoStatus.textContent = browser.i18n.getMessage('repoLoaded', [repos.length]);
 
@@ -1913,7 +1914,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 
 		function filterAndDisplayRepos(query) {
-			if (availableRepos.length === 0) {
+			if (!availableRepos || availableRepos.length === 0) {
 				const loadingMsg = document.createElement('div');
 				loadingMsg.className = 'p-3 text-center text-gray-500 text-sm';
 				loadingMsg.textContent = browser.i18n.getMessage('repoLoading');
@@ -2104,7 +2105,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			const platform = items.platform || 'github';
 			const platformUsernameKey = `${platform}Username`;
 			const username = items[platformUsernameKey];
-			if (username && useRepoFilter.checked && availableRepos.length === 0) {
+			if (username && useRepoFilter.checked && (!availableRepos || availableRepos.length === 0)) {
 				setTimeout(() => loadRepos(), 1000);
 			}
 		});
